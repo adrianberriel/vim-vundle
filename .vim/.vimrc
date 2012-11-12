@@ -1,80 +1,85 @@
 " ---------------------------------------------------------------------------- "
-" Lo basico
+" General
 " ---------------------------------------------------------------------------- "
-" No compatible con vi
-set nocompatible
-" Requerido para Vundle
-filetype off
+set nocompatible            " No compatible con vi
+filetype off                " Requerido para Vundle
 
 " Vundle
+" Runtimepath
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-" Dejamos que Vundle maneje a Vundle
 Bundle 'gmarik/vundle'
 
-" Mis Bundles
+" Plugins
 "
-" repos on github
+" repos en github
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 Bundle 'honza/snipmate-snippets'
 Bundle 'garbas/vim-snipmate'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'tomasr/molokai'
 Bundle 'tpope/vim-surround'
 Bundle 'ervandew/supertab'
-"Bundle 'fholgado/minibufexpl'
 Bundle 'lambdalisue/vim-django-support'
+Bundle 'bingaman/vim-sparkup'
+" en sparkup.py usar python2
+" Crtl+E para activar, Ctrl+N para siguiente elemento
+Bundle 'wincent/Command-T'
+" Para completar la instalacion:
+" cd ~/.vim/bundle/command-t/ruby/command-t
+" ruby extconf.rb
+" make
+Bundle 'sjl/gundo.vim'
+Bundle 'davidhalter/jedi-vim'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'joonty/vdebug'
+Bundle 'scrooloose/nerdcommenter'
 " vim-scripts repos
 Bundle 'The-NERD-tree'
-Bundle 'Pydiction'
-"Bundle 'minibufexpl'
+Bundle 'taglist.vim'
+Bundle 'buftabs'
+Bundle 'vcscommand.vim'
+Bundle 'bufexplorer.zip'
+Bundle 'matchit.zip'
+Bundle 'AutoClose'
+"Bundle 'Pydiction'
+"Bundle 'pythoncomplete'
 " non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
 
-" Comportamiento por tipo de archivo
-filetype plugin indent on
-
-" Activamos color por sintaxis
-syntax on
-
-" Omnicompletion
-"set ofu=syntaxcomplete#Complete
+filetype plugin indent on   " Comportamiento por tipo de archivo
+syntax on                   " Activamos color por sintaxis
 
 " ---------------------------------------------------------------------------- "
 " Interfaz
 " ---------------------------------------------------------------------------- "
-" Opciones para la GUI, toolbar etc
 set guioptions=acg
-" Soporte para 256 colores
-set t_Co=256
-" Soporte de mouse
-set mouse=a
+set t_Co=256                " 256 colores en terminal
+set mouse=a                 " Soporte de mouse
 " Color
-set background=dark
+"set background=light
 let g:solarized_termtrans=1
 let g:solarized_termcolors=256
 let g:solarized_contrast="high"
 let g:solarized_visibility="high"
-colorscheme solarized
-" Mover el cursor por todos lados
-set virtualedit=all
-" Lineas por arriba o debajo cuando se hace scroll
-set scrolloff=4
-" Muestra el modo en el que esta
-set showmode
-" Muestra comandos parciales en la linea de estado
-set showcmd
-" Menu de autocompletado
+"colorscheme solarized
+colorscheme molokai
+"set virtualedit=all        " Mover el cursor por todos lados
+set scrolloff=4             " Lineas por arriba y debajo
+set showmode                " Modo actual
+set showcmd                 " Muestra comandos parciales
 set wildmenu
-" Muestra posicion del cursor
-set ruler
-" Linea de estado aunque haya solo una ventana
-set laststatus=2
-" Muestra numeros de linea
-set number
+set wildignore=*.swp,*.bak,*.pyc,*.class
+set ruler                   " Posicion del cursor
+set cursorline              " Subraya linea actual
+set laststatus=2            " Se muestra aunque haya solo una ventana
+set number                  " Numeros de linea
+set title                   " Cambia el titulo en la terminal
 if has("gui_running")
     "set guifont=Ubuntu\ Mono\ 12
-    "set lines=40 columns=120
+    set guifont=DejaVu\ Sans\ Mono\ 10
+    set lines=52 columns=130
 endif
 
 " ---------------------------------------------------------------------------- "
@@ -91,28 +96,27 @@ set softtabstop=4
 " Preferencias generales
 " ---------------------------------------------------------------------------- "
 set encoding=utf-8
-set hidden          " Si se cierra el buffer no se cierra el archivo
+set hidden                      " Si se cierra el buffer no se cierra el archivo
 set backspace=indent,eol,start  " Backspace intuitivo
-set history=700
+set history=1000
+set undolevels=1000
+set whichwrap+=<,>,[,]
 " Hacen casi lo mismo asi que los mapeo
 nnoremap ' `
 nnoremap ` '
-
-let mapleader = ","     " Por defecto la tecla leader es \
+let mapleader = ","             " Por defecto la tecla leader es \
 
 " ---------------------------------------------------------------------------- "
-" Preferencias para busquedas
+" Busquedas
 " ---------------------------------------------------------------------------- "
-" Set the search scan to wrap around the file
 set wrapscan
 set ignorecase
 set smartcase
 set gdefault " Busquedas globales por defecto
 set incsearch
 set showmatch
-" Resaltado de busqueda
 set hlsearch
-nmap <silent> <leader>n :silent :nohlsearch<cr>  " Apagar resaltado
+nmap <silent> <leader>/ :nohlsearch<CR> " Apagar resaltado
 
 " ---------------------------------------------------------------------------- "
 " Backup
@@ -123,7 +127,7 @@ set directory=~/.vim/backup,/tmp
 " ---------------------------------------------------------------------------- "
 " Manejo de lineas largas
 " ---------------------------------------------------------------------------- "
-set wrap
+set nowrap
 set textwidth=79
 set formatoptions=c,q,r,t
 
@@ -144,23 +148,32 @@ vnoremap y "+y
 " ---------------------------------------------------------------------------- "
 " Edicion de vimrc
 " ---------------------------------------------------------------------------- "
-nmap <silent> <leader>ev :e $MYVIMRC<cr>
-nmap <silent> <leader>sv :so $MYVIMRC<cr>
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " ---------------------------------------------------------------------------- "
 " Mapeos
 " ---------------------------------------------------------------------------- "
-nmap <silent> <leader>n :NERDTreeToggle<cr>
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-h> <c-w>h
-
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+nmap <silent> <leader>n :NERDTreeToggle<CR>
+map <leader>u :GundoToggle<CR>
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+map <C-h> <C-w>h
+nnoremap j gj
+nnoremap k gk
+noremap <C-left> :bprev<CR>
+noremap <C-right> :bnext<CR>
+" ---------------------------------------------------------------------------- "
+" Omnicompletion
+" ---------------------------------------------------------------------------- "
+set ofu=syntaxcomplete#Complete             " Omnicomlete function
+"autocmd FileType python set omnifunc=pythoncomplete#Complete
+"autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+"autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+"autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 "let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 set completeopt=menuone,longest,preview
-let g:pydiction_location = "~/.vim/bundle/Pydiction/complete-dict"
+" Activamos pydiction
+"let g:pydiction_location = "~/.vim/bundle/Pydiction/complete-dict"
