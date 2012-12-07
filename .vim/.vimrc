@@ -17,9 +17,13 @@ Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 Bundle 'honza/snipmate-snippets'
 Bundle 'garbas/vim-snipmate'
+
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'tomasr/molokai'
 Bundle 'tpope/vim-surround'
+" cs]": cambia [] por "", ds" borra
+" yss}: inserta {} alrededor de la linea
+" ysiw}: iserta {} en palabra
 Bundle 'ervandew/supertab'
 Bundle 'lambdalisue/vim-django-support'
 Bundle 'bingaman/vim-sparkup'
@@ -31,22 +35,24 @@ Bundle 'wincent/Command-T'
 " ruby extconf.rb
 " make
 Bundle 'sjl/gundo.vim'
-Bundle 'davidhalter/jedi-vim'
+"Bundle 'davidhalter/jedi-vim'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'joonty/vdebug'
 Bundle 'scrooloose/nerdcommenter'
+" <leader>cc activa comentario
+" <leader>c<space> toggles comentario
+Bundle 'fholgado/minibufexpl.vim'
+Bundle 'scrooloose/syntastic'
+" pip install flake8
+Bundle 'Townk/vim-autoclose'
 " vim-scripts repos
 Bundle 'The-NERD-tree'
 Bundle 'taglist.vim'
-Bundle 'buftabs'
 Bundle 'vcscommand.vim'
-Bundle 'bufexplorer.zip'
 Bundle 'matchit.zip'
-Bundle 'AutoClose'
+"Bundle 'AutoClose'
 "Bundle 'Pydiction'
-"Bundle 'pythoncomplete'
-" non github repos
-"Bundle 'git://git.wincent.com/command-t.git'
 
 filetype plugin indent on   " Comportamiento por tipo de archivo
 syntax on                   " Activamos color por sintaxis
@@ -56,14 +62,8 @@ syntax on                   " Activamos color por sintaxis
 " ---------------------------------------------------------------------------- "
 set guioptions=acg
 set t_Co=256                " 256 colores en terminal
-set mouse=a                 " Soporte de mouse
+"set mouse=a                 " Soporte de mouse
 " Color
-"set background=light
-let g:solarized_termtrans=1
-let g:solarized_termcolors=256
-let g:solarized_contrast="high"
-let g:solarized_visibility="high"
-"colorscheme solarized
 colorscheme molokai
 "set virtualedit=all        " Mover el cursor por todos lados
 set scrolloff=4             " Lineas por arriba y debajo
@@ -72,14 +72,24 @@ set showcmd                 " Muestra comandos parciales
 set wildmenu
 set wildignore=*.swp,*.bak,*.pyc,*.class
 set ruler                   " Posicion del cursor
-set cursorline              " Subraya linea actual
+"set cursorline              " Subraya linea actual
 set laststatus=2            " Se muestra aunque haya solo una ventana
 set number                  " Numeros de linea
 set title                   " Cambia el titulo en la terminal
 if has("gui_running")
+    set background=light
+    "let g:solarized_termtrans=1
+    "let g:solarized_termcolors=256
+    "let g:solarized_contrast="high"
+    "let g:solarized_visibility="high"
+    "colorscheme solarized
+    colorscheme two2tango
+    set lines=50 columns=130
+endif
+if has("gui_gtk2")
     "set guifont=Ubuntu\ Mono\ 12
-    set guifont=DejaVu\ Sans\ Mono\ 10
-    set lines=52 columns=130
+    "set guifont=DejaVu\ Sans\ Mono\ 10
+    set guifont=Inconsolata\ Medium\ 12
 endif
 
 " ---------------------------------------------------------------------------- "
@@ -160,10 +170,10 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 map <C-h> <C-w>h
-nnoremap j gj
-nnoremap k gk
-noremap <C-left> :bprev<CR>
-noremap <C-right> :bnext<CR>
+"nnoremap j gj
+"nnoremap k gk
+"noremap <C-left> :bprev<CR>
+"noremap <C-right> :bnext<CR>
 " ---------------------------------------------------------------------------- "
 " Omnicompletion
 " ---------------------------------------------------------------------------- "
@@ -177,3 +187,4 @@ let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 set completeopt=menuone,longest,preview
 " Activamos pydiction
 "let g:pydiction_location = "~/.vim/bundle/Pydiction/complete-dict"
+let g:miniBufExplMapCTabSwitchBufs = 1
