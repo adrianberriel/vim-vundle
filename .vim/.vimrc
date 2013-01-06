@@ -91,6 +91,9 @@ if has("gui_gtk2")
     "set guifont=DejaVu\ Sans\ Mono\ 10
     set guifont=Inconsolata\ Medium\ 12
 endif
+if &diff
+    colorscheme solarized
+endif
 
 " ---------------------------------------------------------------------------- "
 " Indentacion y tabs
