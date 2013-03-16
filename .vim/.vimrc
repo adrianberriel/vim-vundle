@@ -19,6 +19,7 @@ Bundle 'honza/snipmate-snippets'
 Bundle 'garbas/vim-snipmate'
 
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'chriskempson/vim-tomorrow-theme.git'
 Bundle 'tomasr/molokai'
 Bundle 'tpope/vim-surround'
 " cs]": cambia [] por "", ds" borra
@@ -53,6 +54,9 @@ Bundle 'vcscommand.vim'
 Bundle 'matchit.zip'
 "Bundle 'AutoClose'
 "Bundle 'Pydiction'
+" non-git repos
+Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
+" <leader>ll para compilar
 
 filetype plugin indent on   " Comportamiento por tipo de archivo
 syntax on                   " Activamos color por sintaxis
@@ -77,19 +81,15 @@ set laststatus=2            " Se muestra aunque haya solo una ventana
 set number                  " Numeros de linea
 set title                   " Cambia el titulo en la terminal
 if has("gui_running")
-    set background=light
-    "let g:solarized_termtrans=1
-    "let g:solarized_termcolors=256
-    "let g:solarized_contrast="high"
-    "let g:solarized_visibility="high"
-    "colorscheme solarized
-    colorscheme two2tango
-    set lines=50 columns=130
+    set background=dark
+    colorscheme solarized
+    set lines=50 columns=100
 endif
 if has("gui_gtk2")
     "set guifont=Ubuntu\ Mono\ 12
     "set guifont=DejaVu\ Sans\ Mono\ 10
-    set guifont=Inconsolata\ Medium\ 12
+    "set guifont=Inconsolata\ Medium\ 12
+    set guifont=Liberation\ Mono\ 11
 endif
 if &diff
     colorscheme solarized
@@ -173,10 +173,6 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 map <C-h> <C-w>h
-"nnoremap j gj
-"nnoremap k gk
-"noremap <C-left> :bprev<CR>
-"noremap <C-right> :bnext<CR>
 " ---------------------------------------------------------------------------- "
 " Omnicompletion
 " ---------------------------------------------------------------------------- "
@@ -187,7 +183,8 @@ set ofu=syntaxcomplete#Complete             " Omnicomlete function
 "autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 "let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
-set completeopt=menuone,longest,preview
+set completeopt=menuone,menu,longest
 " Activamos pydiction
 "let g:pydiction_location = "~/.vim/bundle/Pydiction/complete-dict"
 let g:miniBufExplMapCTabSwitchBufs = 1
+let g:tex_flavor='latex'
