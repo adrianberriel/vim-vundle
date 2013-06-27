@@ -28,18 +28,12 @@ Bundle 'tpope/vim-surround'
 Bundle 'ervandew/supertab'
 Bundle 'lambdalisue/vim-django-support'
 Bundle 'bingaman/vim-sparkup'
+Bundle 'ctrlp.vim'
 " en sparkup.py usar python2
 " Crtl+E para activar, Ctrl+N para siguiente elemento
-Bundle 'wincent/Command-T'
-" Para completar la instalacion:
-" cd ~/.vim/bundle/command-t/ruby/command-t
-" ruby extconf.rb
-" make
 Bundle 'sjl/gundo.vim'
-"Bundle 'davidhalter/jedi-vim'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'joonty/vdebug'
 Bundle 'scrooloose/nerdcommenter'
 " <leader>cc activa comentario
 " <leader>c<space> toggles comentario
@@ -52,8 +46,6 @@ Bundle 'The-NERD-tree'
 Bundle 'taglist.vim'
 Bundle 'vcscommand.vim'
 Bundle 'matchit.zip'
-"Bundle 'AutoClose'
-"Bundle 'Pydiction'
 " non-git repos
 Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
 " <leader>ll para compilar
@@ -76,13 +68,13 @@ set showcmd                 " Muestra comandos parciales
 set wildmenu
 set wildignore=*.swp,*.bak,*.pyc,*.class
 set ruler                   " Posicion del cursor
-"set cursorline              " Subraya linea actual
+set cursorline              " Subraya linea actual
 set laststatus=2            " Se muestra aunque haya solo una ventana
 set number                  " Numeros de linea
 set title                   " Cambia el titulo en la terminal
 if has("gui_running")
     set background=dark
-    colorscheme solarized
+    colorscheme Tomorrow-Night
     set lines=50 columns=100
 endif
 if has("gui_gtk2")
